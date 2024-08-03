@@ -8,3 +8,22 @@
     name: mysql
     state: started
     enabled: yes
+
+- name: Install PyMySQL
+  ansible.builtin.apt:
+    name: python3-pymysql
+    state: present
+
+- name: Create database
+  community.mysql.mysql_db:
+    name: kaizen
+    state: present
+    login_unix_socket: /run/mysqld/mysqld.sock
+
+- name: Create user
+  community.mysql.mysql_user:
+    name: Amanda
+    password: world123
+    priv: '*.*:ALL'
+    state: present
+    login_unix_socket: /run/mysqld/mysqld.sock
