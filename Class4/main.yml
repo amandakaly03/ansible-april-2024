@@ -1,0 +1,10 @@
+- hosts: all
+  vars:
+    dest: /mnt
+  become: yes
+  tasks:
+  roles:
+    - hello
+    - kaizen
+
+  
